@@ -12,13 +12,24 @@ public class SequenceTools {
         int i = from, stop = to, step = from > to ? -1 : 1;
         String terms = "";
 
-        while (true) {
-            terms += sg.getTerm(i) + sep;
-            if (i == stop) {
-                return terms.trim();
+        if (from > to) {
+            while (true) {
+                terms += sep + sg.getTerm(i);
+                if (i == stop) {
+                    return terms.trim();
+                }
+                i += step;
             }
-            i += step;
+        } else {
+            while (true) {
+                terms += sg.getTerm(i) + sep;
+                if (i == stop) {
+                    return terms.trim();
+                }
+                i += step;
+            }
         }
+
     }
 
     public static String getTermsAsColumn(SequenceGenerator sg,
